@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EcoCity — Smart Waste Management</title>
+<style>
+:root{--green:#176b48;--green2:#23945f;--mint:#e6f5e9;--ink:#19352a;--muted:#60746a;--bg:#f5f8f5;--white:#fff;--line:#dce7df;--blue:#287bc1;--gold:#c88716}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}
+header{background:linear-gradient(120deg,#12583c,#238556);color:#fff;padding:26px 18px 22px}
+.wrap{max-width:1050px;margin:auto;padding:0 16px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:16px;background:#ffffff24;display:grid;place-items:center;font-size:27px}
+h1{font-size:clamp(1.7rem,4vw,2.4rem);margin:0}header p{margin:5px 0 0;color:#e0f4e7}.hero{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;margin-top:24px}.hero strong{font-size:1.15rem}.points{background:#fff;color:var(--green);border-radius:16px;padding:12px 16px;font-weight:800;min-width:135px}
+nav{display:flex;gap:8px;overflow:auto;padding:14px 0}.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:10px 15px;font-weight:700;cursor:pointer;white-space:nowrap}.tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+main{padding:4px 0 40px}.panel{display:none}.panel.active{display:block}.section-title{margin:18px 0 12px;font-size:1.3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 4px 16px #173b2410}.card h3{margin:7px 0 5px}.card p{margin:5px 0;color:var(--muted)}.emoji{font-size:30px}.pill{display:inline-block;border-radius:999px;padding:4px 9px;font-size:.78rem;font-weight:800;background:var(--mint);color:var(--green)}
+label{display:block;font-weight:700;margin:12px 0 5px}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd9ce;border-radius:10px;font:inherit;background:#fff;color:var(--ink)}button.primary,.linkbtn{display:inline-block;background:var(--green);color:#fff;border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer;text-decoration:none;margin-top:12px}button.primary:hover,.linkbtn:hover{background:#0e4f34}.hint{font-size:.9rem;color:var(--muted)}.notice{background:#fff8e8;border:1px solid #f0dca9;padding:12px 14px;border-radius:12px;color:#6f5318;margin:12px 0}.success{background:#e9f7ed;color:#155b37;padding:12px;border-radius:12px;margin-top:12px;display:none}.checkrow{display:flex;gap:10px;align-items:flex-start;margin:12px 0}.checkrow input{width:auto;margin-top:6px}.checkrow label{margin:0;font-weight:500}.bar{height:10px;background:#e2ebe4;border-radius:999px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:var(--green2);transition:width .2s}.stat{font-size:1.8rem;font-weight:850;color:var(--green)}footer{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}
+@media(min-width:760px){.two{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:start}}
+.lesson-image{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line)}.video-shell{margin:12px 0}.lesson-video{display:block;width:100%;max-height:520px;aspect-ratio:16/9;background:#10271d;border-radius:14px;border:1px solid var(--line)}.quiz-question{padding:13px 0;border-bottom:1px solid var(--line)}.quiz-question p{margin:0 0 8px;font-weight:750}.quiz-question label{font-weight:500;margin:7px 0;display:flex;gap:8px;align-items:flex-start}.quiz-question input{width:auto;margin-top:5px}.badge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.badge-card{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}.badge-card.locked{opacity:.55;filter:grayscale(1)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand"><div class="logo">♻️</div><div><h1>EcoCity</h1><p>Sort Smart. Waste Less. Live Green.</p></div></div>
+  <div class="hero"><div><strong>Your city, your responsibility 🌱</strong><div>Simple habits for cleaner, healthier urban communities.</div></div><div class="points">🌟 <span id="topPoints">0</span> Green Points</div></div>
+</div></header>
+<div class="wrap">
+<nav aria-label="Main navigation">
+<button class="tab active" data-tab="home">🏡 Dashboard</button><button class="tab" data-tab="learn">📚 Knowledge Hub</button><button class="tab" data-tab="sort">🗑️ Sort Waste</button><button class="tab" data-tab="schedule">🚛 Collection</button><button class="tab" data-tab="locator">📍 Recycling Locator</button><button class="tab" data-tab="rewards">🏆 Green Rewards</button>
+</nav>
+<main>
+<section id="home" class="panel active">
+<h2 class="section-title">Welcome to a greener city</h2>
+<div class="grid">
+<div class="card"><div class="emoji">📚</div><h3>Learn & take a quiz</h3><p>Explore the illustrated EVS lesson and earn Green Points by checking your knowledge.</p><button class="primary" data-go="learn">Open Knowledge Hub</button></div>
+<div class="card"><div class="emoji">🗑️</div><h3>Know your bin</h3><p>Check where everyday items belong before throwing them away.</p><button class="primary" data-go="sort">Explore waste guide</button></div>
+<div class="card"><div class="emoji">🚛</div><h3>Plan a collection</h3><p>Save a demo pickup request for your household or community.</p><button class="primary" data-go="schedule">Request pickup</button></div>
+<div class="card"><div class="emoji">📍</div><h3>Find recycling options</h3><p>Search for nearby recycling and e-waste drop-off points on a map.</p><button class="primary" data-go="locator">Find a centre</button></div>
+<div class="card"><div class="emoji">🌿</div><h3>Build green habits</h3><p>Complete simple eco-actions and collect points on this device.</p><button class="primary" data-go="rewards">Earn points</button></div>
+</div>
+<h2 class="section-title">Your green progress</h2>
+<div class="card"><div class="two"><div><div class="stat"><span id="homePoints">0</span> points</div><p>Points are saved in this browser on this device.</p><div class="bar"><span id="progress"></span></div></div><div><h3>Today's reminder</h3><p>Keep wet and dry waste separate, and never put batteries or e-waste in ordinary bins.</p></div></div></div>
+</section>
+<section id="learn" class="panel">
+<h2 class="section-title">Knowledge Hub: Sustainable Solid Waste Management</h2>
+<p>Learn how cities can manage waste responsibly, protect the environment and keep communities healthy.</p>
+<div class="card" style="margin-bottom:14px"><h3>🌎 Illustrated lesson</h3><p class="hint">Use this storyboard to explore the topic from the waste problem to practical solutions.</p><div class="video-shell">
+<video id="lessonVideo" class="lesson-video" controls playsinline preload="metadata" poster="" aria-label="Recorded lesson on sustainable solid waste management">
+<source id="lessonVideoSource" src="ecocity-lesson.mp4" type="video/mp4">
+Your browser does not support video playback. Please use a modern browser.
+</video>
+<div id="videoHelp" class="notice">Add your recorded lesson video: choose an MP4 file below, or place a video named <b>ecocity-lesson.mp4</b> in the same folder as this HTML file.</div>
+<label for="videoUpload">Choose your recorded video (MP4, WebM or Ogg)</label>
+<input id="videoUpload" type="file" accept="video/mp4,video/webm,video/ogg,video/*">
+<p class="hint">Tip: record your narration and scenes, export the video, then select it here. The selected file plays on this device; it is not uploaded to a server.</p>
+</div><div class="grid" style="margin-top:14px"><div><h3>What you will learn</h3><p>• What solid waste is and why it matters</p><p>• Wet, dry, hazardous and electronic waste</p><p>• Segregation, composting, recycling and safe disposal</p><p>• The 3Rs: Reduce, Reuse and Recycle</p></div><div><h3>Remember the 3Rs</h3><p><b>Reduce:</b> Avoid unnecessary waste.</p><p><b>Reuse:</b> Use items again when safe.</p><p><b>Recycle:</b> Send accepted materials to the right recycling stream.</p><button class="primary" id="finishLesson">I completed the lesson (+10 points)</button><div id="lessonMsg" class="success"></div></div></div></div>
+<div class="card"><h3>🧠 Quick knowledge quiz</h3><p class="hint">Answer all three questions. Earn 5 points for each correct answer, once per browser profile.</p>
+<form id="knowledgeQuiz">
+<div class="quiz-question"><p>1. What should you do with clean paper that is accepted locally for recycling?</p><label><input type="radio" name="q1" value="a" required> Mix it with food scraps</label><label><input type="radio" name="q1" value="b"> Keep it dry and place it with accepted dry recyclables</label><label><input type="radio" name="q1" value="c"> Burn it outdoors</label></div>
+<div class="quiz-question"><p>2. Which waste is usually suitable for composting?</p><label><input type="radio" name="q2" value="a" required> Fruit and vegetable scraps</label><label><input type="radio" name="q2" value="b"> Batteries</label><label><input type="radio" name="q2" value="c"> Broken electronics</label></div>
+<div class="quiz-question"><p>3. What is the safest way to handle an old phone?</p><label><input type="radio" name="q3" value="a" required> Put it in the wet-waste bin</label><label><input type="radio" name="q3" value="b"> Throw it into a street drain</label><label><input type="radio" name="q3" value="c"> Take it to an authorized e-waste collection point</label></div>
+<button class="primary" type="submit">Check answers & earn points</button><div id="quizResult" class="success"></div></form></div>
+<h2 class="section-title">🏅 Knowledge badges</h2><div class="badge-grid"><div id="badgeLearner" class="badge-card locked">📖 <b>Eco Learner</b><p class="hint">Complete the illustrated lesson.</p></div><div id="badgeQuiz" class="badge-card locked">🧠 <b>Waste Wise</b><p class="hint">Complete the knowledge quiz.</p></div><div id="badgePoints" class="badge-card locked">🌟 <b>Green Champion</b><p class="hint">Reach 100 Green Points.</p></div></div>
+</section>
+<section id="sort" class="panel">
+<h2 class="section-title">Smart waste segregation</h2><p class="hint">Choose an item to see the recommended handling. Follow your local municipal rules if they differ.</p>
+<div class="two"><div class="card">
+<label for="wasteItem">What are you throwing away?</label><select id="wasteItem">
+<option value="banana">Fruit peels / leftover vegetables</option><option value="paper">Clean paper or cardboard</option><option value="plastic">Clean plastic bottle or container</option><option value="glass">Glass bottle or jar</option><option value="battery">Battery</option><option value="phone">Old phone / electronic item</option><option value="sanitary">Sanitary or contaminated waste</option><option value="chemical">Paint, pesticide or chemical container</option>
+</select><button class="primary" id="checkWaste">Show guidance</button><div id="wasteAnswer" class="success" style="display:block">Choose an item and select “Show guidance”.</div></div>
+<div class="card"><h3>Quick bin guide</h3><p>🟢 <b>Wet / organic:</b> food scraps and garden waste for suitable composting.</p><p>🔵 <b>Dry recyclables:</b> clean paper, metal, glass and accepted plastics.</p><p>🟠 <b>Special handling:</b> batteries, e-waste, chemicals and sanitary waste—keep separate and use approved local routes.</p><button class="primary" id="sortPoint">I sorted waste responsibly (+10)</button></div></div>
+</section>
+<section id="schedule" class="panel">
+<h2 class="section-title">Waste collection scheduler</h2><div class="notice">Demo feature: this saves a request locally in your browser; it does not notify your municipality or book a real truck.</div>
+<div class="two"><form id="pickupForm" class="card"><label for="resident">Name or household label</label><input id="resident" required placeholder="e.g. Sharma household"><label for="area">Area / neighbourhood</label><input id="area" required placeholder="e.g. Model Town"><label for="wasteType">Waste type</label><select id="wasteType"><option>Segregated household waste</option><option>Dry recyclable waste</option><option>Garden waste</option><option>E-waste (needs approved collection)</option><option>Bulky waste</option></select><label for="pickupDate">Preferred collection date</label><input id="pickupDate" type="date" required><label for="notes">Additional details (optional)</label><textarea id="notes" rows="3" placeholder="Approximate quantity, access instructions…"></textarea><button class="primary" type="submit">Save demo request</button><div id="pickupMsg" class="success"></div></form>
+<div class="card"><h3>Saved requests</h3><div id="pickupList"><p class="hint">No requests yet.</p></div><button class="primary" id="clearPickups" type="button">Clear saved requests</button></div></div>
+</section>
+<section id="locator" class="panel">
+<h2 class="section-title">Recycling locator</h2><p>Search for recycling centres, scrap collection points or authorized e-waste collection near your area using a map service.</p>
+<div class="card"><label for="location">Enter city or neighbourhood</label><input id="location" placeholder="e.g. Ludhiana, Punjab"><label for="placeType">What do you need?</label><select id="placeType"><option value="recycling centre">General recycling centre</option><option value="authorized e-waste collection centre">Authorized e-waste collection</option><option value="scrap dealer paper plastic metal">Paper, plastic and metal recycling</option><option value="composting facility">Composting facility</option></select><button class="primary" id="findPlaces">Search map</button><p class="hint">Map results are provided by Google Maps. Confirm opening hours, accepted materials and authorization before visiting.</p></div>
+<div class="grid" style="margin-top:14px"><div class="card"><div class="emoji">♻️</div><h3>Before you visit</h3><p>Call ahead and ask what materials are accepted.</p></div><div class="card"><div class="emoji">🔋</div><h3>E-waste safety</h3><p>Do not dismantle batteries or electronics at home. Use authorized collection channels.</p></div></div>
+</section>
+<section id="rewards" class="panel">
+<h2 class="section-title">Green rewards</h2><div class="two"><div class="card"><div class="emoji">🏆</div><h3>Your eco score</h3><div class="stat"><span id="rewardPoints">0</span> points</div><p>Complete actions to build a greener routine.</p><div class="bar"><span id="rewardProgress"></span></div><p class="hint">Starter: 0 · Eco Helper: 50 · Green Champion: 100</p><h3 id="level">🌱 Starter</h3></div>
+<div class="card"><h3>Complete an action</h3><div class="checkrow"><input type="checkbox" id="a1" data-points="10"><label for="a1">I separated wet and dry waste (+10)</label></div><div class="checkrow"><input type="checkbox" id="a2" data-points="15"><label for="a2">I reused an item instead of discarding it (+15)</label></div><div class="checkrow"><input type="checkbox" id="a3" data-points="20"><label for="a3">I took accepted recyclables to a collection point (+20)</label></div><div class="checkrow"><input type="checkbox" id="a4" data-points="10"><label for="a4">I avoided a single-use item (+10)</label></div><p class="hint">Each action can earn points once on this device. This is a learning demo, not a redeemable rewards programme.</p><button class="primary" id="resetPoints">Reset demo points</button></div></div>
+</section>
+</main></div>
+<footer>EcoCity student project prototype · Sustainable Solid Waste Management Practices in Urban Areas</footer>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let points=get('ecocity_points',0), requests=get('ecocity_requests',[]), earned=get('ecocity_earned',[]);
+function go(tab){$$('.panel').forEach(p=>p.classList.toggle('active',p.id===tab));$$('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));window.scrollTo({top:0,behavior:'smooth'});if(tab==='schedule')renderRequests();updatePoints()}
+$$('.tab').forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
+$$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+function updatePoints(){['topPoints','homePoints','rewardPoints'].forEach(id=>$('#'+id).textContent=points);let pct=Math.min(100,points);$('#progress').style.width=pct+'%';$('#rewardProgress').style.width=pct+'%';$('#level').textContent=points>=100?'🏆 Green Champion':points>=50?'🌿 Eco Helper':'🌱 Starter';refreshBadges();}
+function refreshBadges(){if(!$('#badgeLearner'))return;$('#badgeLearner').classList.toggle('locked',!get('ecocity_lesson_done',false));$('#badgeQuiz').classList.toggle('locked',!get('ecocity_quiz_done',false));$('#badgePoints').classList.toggle('locked',points<100);}
+function addPoints(n){points+=n;save('ecocity_points',points);updatePoints()}
+const tips={
+banana:['🟢 Wet / organic waste','Place in the wet-waste bin if your local system collects it separately; compost where suitable.'],
+paper:['🔵 Dry recyclable waste','Keep clean and dry, then place in the dry recyclables stream if accepted locally.'],
+plastic:['🔵 Dry recyclable waste','Empty and rinse if needed. Check the local rules for the type of plastic accepted.'],
+glass:['🔵 Dry recyclable waste','Keep separate and handle carefully; wrap broken glass securely and follow local rules.'],
+battery:['🟠 Special collection','Do not put loose batteries in ordinary waste. Use an approved battery or hazardous-waste collection point.'],
+phone:['🟠 E-waste','Keep electronics separate and take them to an authorized e-waste collection centre. Do not dismantle them.'],
+sanitary:['⚪ Residual / sanitary waste','Wrap securely and follow local municipal collection instructions; do not mix with recyclables or compost.'],
+chemical:['🟠 Hazardous waste','Do not pour chemicals down drains. Keep in the original labelled container if safe and seek approved local disposal guidance.']
+};
+
+$('#finishLesson').addEventListener('click',()=>{if(!get('ecocity_lesson_done',false)){save('ecocity_lesson_done',true);addPoints(10);$('#lessonMsg').textContent='Great work! Lesson completed and 10 Green Points added.'}else{$('#lessonMsg').textContent='Lesson already completed. Keep learning and try the quiz!'}$('#lessonMsg').style.display='block';refreshBadges()});
+$('#knowledgeQuiz').addEventListener('submit',e=>{e.preventDefault();let answers={q1:'b',q2:'a',q3:'c'},score=0;for(let q in answers){if(new FormData(e.target).get(q)===answers[q])score++}let result=$('#quizResult');if(!get('ecocity_quiz_done',false)){save('ecocity_quiz_done',true);addPoints(score*5);result.textContent=`You scored ${score}/3. You earned ${score*5} Green Points!`; }else{result.textContent=`You scored ${score}/3. Quiz points have already been awarded once, so no extra points were added.`}result.style.display='block';refreshBadges()});
+$('#checkWaste').addEventListener('click',()=>{let t=tips[$('#wasteItem').value];$('#wasteAnswer').innerHTML='<b>'+t[0]+'</b><br>'+t[1];$('#wasteAnswer').style.display='block'});
+$('#sortPoint').addEventListener('click',()=>{if(!earned.includes('sort')){earned.push('sort');save('ecocity_earned',earned);addPoints(10);$('#sortPoint').textContent='Completed ✓ (+10)'}else alert('You have already earned points for this action.')});
+$('#pickupDate').min=new Date().toISOString().slice(0,10);
+$('#pickupForm').addEventListener('submit',e=>{e.preventDefault();requests.push({id:Date.now(),name:$('#resident').value,area:$('#area').value,type:$('#wasteType').value,date:$('#pickupDate').value,notes:$('#notes').value});save('ecocity_requests',requests);$('#pickupMsg').textContent='Demo request saved on this device.';$('#pickupMsg').style.display='block';e.target.reset();$('#pickupDate').min=new Date().toISOString().slice(0,10);renderRequests()});
+function renderRequests(){let el=$('#pickupList');if(!requests.length){el.innerHTML='<p class="hint">No requests yet.</p>';return}el.innerHTML=requests.slice().reverse().map(r=>`<div style="border-bottom:1px solid var(--line);padding:10px 0"><b>${esc(r.type)}</b><br><span class="hint">${esc(r.name)} · ${esc(r.area)} · ${esc(r.date)}</span>${r.notes?'<p>'+esc(r.notes)+'</p>':''}</div>`).join('')}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('#clearPickups').addEventListener('click',()=>{if(confirm('Delete all demo requests saved on this device?')){requests=[];save('ecocity_requests',requests);renderRequests()}});
+$('#findPlaces').addEventListener('click',()=>{let loc=$('#location').value.trim();if(!loc){alert('Enter a city or neighbourhood first.');return}let q=encodeURIComponent($('#placeType').value+' near '+loc);window.open('https://www.google.com/maps/search/'+q,'_blank','noopener')});
+$$('[data-points]').forEach(cb=>{cb.checked=earned.includes(cb.id);cb.addEventListener('change',()=>{let id=cb.id,n=Number(cb.dataset.points);if(cb.checked&&!earned.includes(id)){earned.push(id);save('ecocity_earned',earned);addPoints(n)}else if(!cb.checked&&earned.includes(id)){earned=earned.filter(x=>x!==id);save('ecocity_earned',earned);points=Math.max(0,points-n);save('ecocity_points',points);updatePoints()}})});
+$('#resetPoints').addEventListener('click',()=>{if(confirm('Reset all demo points and completed reward actions?')){points=0;earned=[];save('ecocity_points',0);save('ecocity_earned',[]);$$('[data-points]').forEach(c=>c.checked=false);$('#sortPoint').textContent='I sorted waste responsibly (+10)';updatePoints()}});
+const videoUpload=$('#videoUpload');
+if(videoUpload){videoUpload.addEventListener('change',()=>{const file=videoUpload.files&&videoUpload.files[0];if(!file)return;const video=$('#lessonVideo');const source=$('#lessonVideoSource');if(video.dataset.objectUrl)URL.revokeObjectURL(video.dataset.objectUrl);const url=URL.createObjectURL(file);video.dataset.objectUrl=url;source.src=url;source.type=file.type||'video/mp4';video.load();$('#videoHelp').textContent='Selected video: '+file.name+' — press Play to watch your recorded lesson.';});}
+updatePoints();renderRequests();
+</script>
+</body></html>
